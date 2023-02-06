@@ -1,0 +1,9 @@
+pt-BR:
+  caxlsx:
+    meal_rating:
+      attributes:
+        meal_plan_date: 'Data cardápio'
+        meal_name: 'Refeição'
+        rating: 'Nota (1-5)'
+        commentary: 'Comentário'
+        created_by: 'Avaliado por'

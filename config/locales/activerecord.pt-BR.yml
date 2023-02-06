@@ -1,0 +1,155 @@
+pt-BR:
+  activerecord:
+    models:
+      account:
+        one: &account Conta
+        other: &accounts Contas
+      account_tool:
+        one: &account_tool Conta/Ferramenta
+        other: &account_tools Conta/Ferramentas
+      city:
+        one: &city Cidades
+        other: &cities Cidades
+      state:
+        one: &state Estado
+        other: &states Estados
+      user:
+        one: &user Usuário
+        other: &users Usuários
+    attributes:
+      account:
+        name: Nome
+        created_by_id: Criado por
+        updated_by_id: Editado por
+        active: Ativo
+        deleted_at: Deletado em
+        created_at: Criado em
+        updated_at: Editado em
+        smtp_user: Usuário SMTP
+        smtp_password: Senha SMTP
+        smtp_host: Host SMTP
+        smtp_email: E-mail SMTP
+        users_timeout: Deslogar usuários
+        timeout_in: Deslogar usuários em
+        uuid: UUID
+      city:
+        name: Nome
+        state_id: *state
+        state: *state
+        created_by_id: Criado por
+        updated_by_id: Editado por
+        active: Ativo
+        deleted_at: Deletado em
+        created_at: Criado em
+        updated_at: Editado em
+      integration:
+        account: *account
+        account_id: *account
+        created_by_id: Criado por
+        updated_by_id: Editado por
+        active: Ativo
+        deleted_at: Deletado em
+        created_at: Criado em
+        updated_at: Editado em
+        token: Token
+        description: Descrição
+        integration_type: Tipo da integração
+        remote_ip: IP's liberados
+        uuid: UUID
+      state:
+        uf: UF
+        country: Pais
+        created_by_id: Criado por
+        updated_by_id: Editado por
+        active: Ativo
+        deleted_at: Deletado em
+        created_at: Criado em
+        updated_at: Editado em
+      user:
+        provider: Devise provider
+        uid: Devise uid
+        encrypted_password: Senha criptografada
+        reset_password_token: Token para reset de senha
+        reset_password_sent_at: Reset de senha enviado em
+        sign_in_count: Quantidade de logins
+        current_sign_in_at: Login atual em
+        last_sign_in_at: Ultimo login
+        current_sign_in_ip: IP do login atual
+        last_sign_in_ip: IP do último login
+        confirmation_token: Token de confirmação
+        confirmed_at: Confirmado em
+        confirmation_sent_at: Confirmação enviada em
+        unconfirmed_email: E-mail não confirmado
+        name: Nome
+        email: E-mail
+        active: Ativo
+        deleted_at: Deletado em
+        created_at: Criado em
+        updated_at: Editado em
+        is_admin: É administrador
+        address: Endereço
+        license_plate: Placa
+        driver_license: CNH
+        phone: Telefone
+        cellphone: Telefone celular
+        phone_extension: Ramal
+        occupation: Ocupação
+        subsidiary: Filial
+        admission_date: Data de admissão
+        on_vacation: De férias
+        contact_person: Pessoa para contato
+        notification_token: Token de notificação
+        photo_file_name: Nome da foto
+        photo_content_type: Conteúdo da foto
+        photo_file_size: Tamanho da foto
+        photo_updated_at: Foto editada em
+        cod_emp: Código da empresa
+        cod_fil: Código da unidade
+        show_intro: Mostrar intro
+        shift_id: Turno
+        godfather_id: Padrinho
+        web_notification_token: Token de notificação web
+        access_all_purchase_orders: Acessar todas as ordens de compra
+        is_blocked: É bloqueado
+        rg: RG
+        cpf: CPF
+        password: senha
+        driver_license_photo_file_name: CNH nome da foto
+        driver_license_photo_content_type: CNH tipo da foto
+        driver_license_photo_file_size: CNH tamanho da foto
+        driver_license_photo_updated_at: CNH foto editada em
+        lunch_time_start: Inicio horário do almoço
+        lunch_time_end: Fim horário de almoço
+        work_time_start: Inicio horário de trabalho
+        work_time_end: Fim horário de trabalho
+        is_account_admin: É administrador da conta
+        last_request_at: Última requisição
+        timeout_in: Deslogar em (minutos)
+        original_name: Nome original
+        account_id: *account
+        account: *account
+        uuid: UUID
+        created_by_id: Criado por
+        updated_by_id: Editado por
+        allow_password_change: Liberado troca de senha
+        remember_created_at: Lembrar criado em
+        tokens: Tokens
+    errors:
+      models:
+        account:
+          attributes:
+            uuid:
+        budget_items:
+          attributes:
+            base:
+              multiple_quantity: "Este item aceita somente valores múltiplos para sua quantidade, informe: '%{example}'"
+        user:
+          attributes:
+            password:
+              cant_have_account: Usuário administrador não pode ter conta
+              invalid_case_format: Você precisa informar ao menos uma letra maiúscula e minúscula
+              invalid_number_format: Você precisa informar ao menos um número
+              invalid_special_character: Você precisa informar ao menos um caractere especial
+            cpf:
+              invalid_format: CPF inválido
+            base:

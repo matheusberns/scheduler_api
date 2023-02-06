@@ -1,0 +1,8 @@
+pt-BR:
+  enumerations:
+    tool_module_type_enum:
+      order: Pedido
+      financial: Financeiro
+      note: Notas
+      service: Serviço
+      news: Novidades

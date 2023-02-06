@@ -1,0 +1,28 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+
+default: &default
+  host: localhost
+  adapter: postgresql
+  encoding: unicode
+  user: postgres
+  timeout: 5000
+  password: p0stgr3s
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: scheduler_development
+
+test:
+  <<: *default
+  database: scheduler_test
+
+sandbox:
+  <<: *default
+  database: scheduler_sandbox
+
+production:
+  <<: *default
+  host: localhost
+  database: scheduler_production
+  password: <%= ENV['DATABASE_PASSWORD'] %>
