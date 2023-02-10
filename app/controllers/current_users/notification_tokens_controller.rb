@@ -34,9 +34,9 @@ module CurrentUsers
 
     def set_notification_token
       @notification_token = @current_user
-                            .notification_tokens
-                            .activated
-                            .find_by!(token: params[:token])
+                              .notification_tokens
+                              .activated
+                              .find_by!(token: params[:token])
     end
 
     def notification_token_params
