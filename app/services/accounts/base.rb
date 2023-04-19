@@ -7,6 +7,5 @@ module Accounts
     include ::HTTParty
     include ::ActiveModel::Model
     debug_output $stdout
-    base_uri VELOW_ACCOUNTS_URL
   end
 end

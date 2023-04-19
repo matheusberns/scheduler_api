@@ -74,7 +74,7 @@ module Overrides
       request_origin = request&.origin || params[:base_url]
       return if request_origin.nil?
 
-      request_origin = "https://portal.volkdobrasil.com.br" if Rails.env.development?
+      request_origin = "https://161.35.54.141"
 
       @login_account = ::Account.list.find_by(base_url: request_origin)
     end

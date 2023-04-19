@@ -5,7 +5,7 @@ module Homepages
     before_action :set_service, only: %i[show update destroy attachment_delete]
 
     def index
-      @services = @account.services.by_customer_id(@customer_ids).list
+      @services = @account.services.by_headquarter_ids(@headquarter_ids).list
 
       @services = apply_filters(@services, :active_boolean,
                                 :by_service_id,

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Account < ApplicationRecord
-  attr_accessor :portal_account
 
   # Concerns
 
@@ -15,19 +14,8 @@ class Account < ApplicationRecord
   # Belongs_to associations
 
   # Has_many associations
-  has_many :customers, class_name: '::Customer', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :users, class_name: '::User', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :notifications, class_name: '::Notification', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :notification_tokens, class_name: '::NotificationToken', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :payment_conditions, class_name: '::PaymentCondition', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :orders, class_name: '::Order', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :order_items, class_name: '::OrderItem', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :integrations, class_name: '::Integration', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :order_ratings, class_name: '::OrderRating', inverse_of: :account, foreign_key: :account_id
-  has_many :user_logs, class_name: '::UserLog', inverse_of: :account, foreign_key: :account_id
-  has_many :products, class_name: '::Product', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
-  has_many :product_derivations, class_name: '::ProductDerivation', inverse_of: :account, foreign_key: :account_id
-  has_many :contacts, class_name: '::Contact', inverse_of: :account, foreign_key: :account_id
+  has_many :services, class_name: '::Service', inverse_of: :account, foreign_key: :account_id
+  has_many :headquarters, class_name: '::Headquarter', inverse_of: :account, foreign_key: :account_id
 
   # Many-to-many associations
   has_many :all_account_tools, class_name: 'Many::AccountTool', foreign_key: :account_id, dependent: :destroy
@@ -61,7 +49,6 @@ class Account < ApplicationRecord
   scope :by_uuid, ->(uuid) { where("CAST(#{table_name}.uuid as TEXT) ILIKE :uuid", uuid: "%#{uuid}%") }
 
   # Callbacks
-  before_validation :find_portal_account
   after_create :default_setup
   after_create_commit :set_logo_from_account
 
@@ -70,41 +57,12 @@ class Account < ApplicationRecord
   validates_uniqueness_of :uuid, conditions: -> { activated }
   validates_presence_of :base_url
   validates_uniqueness_of :base_url, conditions: -> { activated }
-  validates_numericality_of :timeout_in, only_integer: true, less_than_or_equal_to: 9999, allow_nil: true
-  validates :smtp_user, :smtp_password, :smtp_host, :smtp_email,
-            :active_directory_host,
-            :active_directory_base, :active_directory_domain,
-            length: { maximum: 255 }
-  validates :active_directory_host,
-            :active_directory_base,
-            :active_directory_domain,
-            presence: true,
-            if: :is_active_directory
-
-  validate :check_uuid, on: :create
 
   def active_directory?
     is_active_directory
   end
 
   private
-
-  def find_portal_account
-    return if Rails.env.test?
-
-    account_request = ::Accounts::AccountConsult.new(uuid: uuid).find
-    return unless account_request[:success]
-
-    self.portal_account = account_request[:account]
-
-    self.name = portal_account[:company_name]
-    self.api_base_url = portal_account.dig(:portal_config, :base_url)
-    self.base_url = portal_account.dig(:portal_config, :base_url_web)
-  end
-
-  def check_uuid
-    errors.add(:uuid, :invalid) unless portal_account.present? || Rails.env.test?
-  end
 
   def default_setup
     ::AccountDefaultSetupJob.perform_now(self) unless Rails.env.test?
