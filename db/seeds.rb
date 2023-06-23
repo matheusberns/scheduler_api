@@ -9,5 +9,6 @@
   user.password_confirmation = '#Senha123'
   user.active = true
   user.deleted_at = nil
+  user.cpf = '10281506957'
   user.save!
 end
