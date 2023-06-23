@@ -12,5 +12,6 @@ class AddColumnsToUsers < ActiveRecord::Migration[6.1]
     add_column :users, :timeout_in, :integer
     add_column :users, :allow_password_change, :boolean, default: false
     add_column :users, :is_integrator, :boolean, default: false
+    add_reference :users, :account, foreign_key: true
   end
 end
