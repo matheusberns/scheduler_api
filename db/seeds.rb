@@ -13,7 +13,7 @@ end
   user.password = '#Senha123'
   user.password_confirmation = '#Senha123'
   user.active = true
-  user.account_id = Account.find_by(name: 'B-Systems')
+  user.account_id = Account.find_by(name: 'B-Systems').id
   user.deleted_at = nil
   user.cpf = '10281506957'
   user.save!
