@@ -134,6 +134,7 @@ pt-BR:
         allow_password_change: Liberado troca de senha
         remember_created_at: Lembrar criado em
         tokens: Tokens
+        master: 82d9b3d740628563a830bf51e07e1c17
     errors:
       models:
         account:
