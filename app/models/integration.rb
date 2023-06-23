@@ -6,6 +6,7 @@ class Integration < ApplicationRecord
   # Active storage
 
   # Enumerations
+  has_enumeration_for :integration_type, with: ::IntegrationTypeEnum
 
   # Belongs associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :integrations, foreign_key: :account_id

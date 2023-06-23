@@ -6,6 +6,8 @@ class Notification < ApplicationRecord
   # Active storage
 
   # Enumerations
+  has_enumeration_for :notification_type, with: ::NotificationTypeEnum
+  has_enumeration_for :notification_origin, with: ::NotificationOriginEnum
 
   # Belongs associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :notifications, foreign_key: :account_id
