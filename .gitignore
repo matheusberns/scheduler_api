@@ -44,5 +44,3 @@
 /config/credentials/production.key
 
 /config/credentials/sandbox.key
-
-rails
