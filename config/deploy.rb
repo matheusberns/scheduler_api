@@ -1,5 +1,5 @@
 set :application, 'scheduler_api'
-set :repo_url, 'git@github.com:matheusberns/scheduler_api.git'
+set :repo_url, 'https://github.com/matheusberns/scheduler_api.git'
 
 # Default branch is :master
 ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
