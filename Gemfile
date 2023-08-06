@@ -99,12 +99,14 @@ gem 'net-ldap'
 # An easy-to-use wrapper for Net::HTTP, Net::HTTPS and Net::FTP.
 gem 'open-uri', '~> 0.2.0'
 
-gem "capistrano"
-gem 'capistrano-rails'
-gem 'capistrano-bundler'
-gem 'capistrano-rvm'
-gem 'capistrano-passenger'
-gem 'capistrano-rails-collection'
+group :development do
+  gem "capistrano"
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails-collection'
+end
 
 group :production do
   gem 'rails_12factor'
