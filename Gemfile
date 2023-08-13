@@ -106,6 +106,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-passenger'
   gem 'capistrano-rails-collection'
+  gem 'capistrano-secrets-yml'
 end
 
 group :production do
