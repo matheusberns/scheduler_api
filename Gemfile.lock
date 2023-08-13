@@ -97,6 +97,9 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano-secrets-yml (1.2.1)
+      capistrano (>= 3.10)
+      sshkit (>= 1.17.0)
     case_transform (0.2)
       activesupport
     caxlsx (3.4.1)
@@ -408,6 +411,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rails-collection
   capistrano-rvm
+  capistrano-secrets-yml
   caxlsx
   cpf_cnpj
   database_cleaner-active_record
