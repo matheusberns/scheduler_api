@@ -5,6 +5,7 @@ class CreateServices < ActiveRecord::Migration[6.1]
       t.string :description, index: true, null: false
       t.string :duration, index: true, null: false
       t.float :value, null: false, index: true
+      t.uuid :uuid, index: true, null: false, default: 'uuid_generate_v4()', unique: true
 
       t.references :created_by, index: true, foreign_key: { to_table: :users }
       t.references :updated_by, index: true, foreign_key: { to_table: :users }
