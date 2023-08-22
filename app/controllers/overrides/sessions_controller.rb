@@ -10,13 +10,13 @@ module Overrides
     def create
       render_login_field_error and return unless login_field.present?
 
-      @resource = if @login_account&.active_directory? && !Rails.env.development?
+      @resource = if @login_account && !Rails.env.development?
                     find_active_directory_resource || find_active_devise_resource
                   else
                     find_active_devise_resource
                   end
 
-      render_account_not_found_error and return unless @login_account.present? || @resource&.administrator?
+      render_account_not_found_error and return unless @login_account || @resource&.administrator?
 
       render_unauthorized_error and return if invalid_integrator_access?
 

@@ -58,10 +58,6 @@ class Account < ApplicationRecord
   validates_presence_of :base_url
   validates_uniqueness_of :base_url, conditions: -> { activated }
 
-  def active_directory?
-    is_active_directory
-  end
-
   private
 
   def default_setup
