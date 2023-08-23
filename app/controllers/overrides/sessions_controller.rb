@@ -10,17 +10,13 @@ module Overrides
     def create
       render_login_field_error and return unless login_field.present?
 
-      @resource = if @login_account && !Rails.env.development?
-                    find_active_directory_resource || find_active_devise_resource
-                  else
-                    find_active_devise_resource
-                  end
+      @resource = find_active_devise_resource if @login_account && !Rails.env.development?
 
       render_account_not_found_error and return unless @login_account || @resource&.administrator?
 
       render_unauthorized_error and return if invalid_integrator_access?
 
-      if valid_devise_resource? || valid_active_directory_resource?
+      if valid_devise_resource?
         return render_create_error_bad_credentials if not_login_valid?
 
         @token = @resource.create_token
@@ -62,19 +58,21 @@ module Overrides
       render json: { errors: { base: I18n.t('.devise_token_auth.sessions.account_not_found') } }, status: 401
     end
 
+    def render_create_error_not_confirmed
+      render json: { errors: { base: I18n.t('.devise_token_auth.sessions.not_confirmed') } }, status: 401
+    end
+
     def render_create_error_bad_credentials
-      render json: { errors: { base: @exceeded_attempts ? I18n.t('.devise_token_auth.sessions.bad_credential_exceeded_attempts') : I18n.t('.devise_token_auth.sessions.bad_credentials') } }, status: 401
+      render json: { errors: { base: I18n.t('.devise_token_auth.sessions.bad_credentials') } }, status: 401
     end
 
     def render_create_error_account_locked
-      render json: { errors: { base: I18n.t('.devise.mailer.account_lock_msg') } }, status: 401
+      render json: { errors: { base: I18n.t('.devise.mailer.unlock_instructions.account_lock_msg') } }, status: 401
     end
 
     def login_account
       request_origin = request&.origin || params[:base_url]
       return if request_origin.nil?
-
-      request_origin = "http://146.190.45.189"
 
       @login_account = ::Account.list.find_by(base_url: request_origin)
     end

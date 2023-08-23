@@ -25,9 +25,6 @@ module ::ActiveDirectory::Ldap
       @username = username.gsub('@', '')
       @password = password
       @account = account
-      @host = @account.active_directory_host
-      @base = @account.active_directory_base
-      @username_with_domain = "#{@username}@#{@account.active_directory_domain}"
 
       make_connection
     end
