@@ -15,6 +15,7 @@ class Account < ApplicationRecord
 
   # Has_many associations
   has_many :services, class_name: '::Service', inverse_of: :account, foreign_key: :account_id
+  has_many :integrations, class_name: '::Integration', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
   has_many :headquarters, class_name: '::Headquarter', inverse_of: :account, foreign_key: :account_id
 
   # Many-to-many associations
