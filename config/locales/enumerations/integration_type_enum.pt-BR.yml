@@ -1,4 +1,5 @@
 pt-BR:
   enumerations:
     integration_type_enum:
-      portal: Portal
+      web: Portal
+      app: App
