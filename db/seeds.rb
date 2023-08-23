@@ -20,13 +20,17 @@ end
 end
 
 ::Integration.find_or_create_by({ token: 'f4f49fd6deed76678e60' }).tap do |integration|
-  integration.description = 'Web'
+  integration.description = 'B-Systems'
   integration.integration_type = IntegrationTypeEnum::WEB
+  integration.account = Account.find_by(name: 'B-Systems')
+  integration.active = true
   integration.save!
 end
 
 ::Integration.find_or_create_by({ token: '189be8d598dcd88c0a4e' }).tap do |integration|
-  integration.description = 'App'
+  integration.description = 'B-Systems'
   integration.integration_type = IntegrationTypeEnum::APP
+  integration.account = Account.find_by(name: 'B-Systems')
+  integration.active = true
   integration.save!
 end
