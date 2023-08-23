@@ -22,9 +22,11 @@ end
 ::Integration.find_or_create_by({ token: 'f4f49fd6deed76678e60' }).tap do |integration|
   integration.description = 'Web'
   integration.integration_type = IntegrationTypeEnum::WEB
+  integration.save!
 end
 
 ::Integration.find_or_create_by({ token: '189be8d598dcd88c0a4e' }).tap do |integration|
   integration.description = 'App'
   integration.integration_type = IntegrationTypeEnum::APP
+  integration.save!
 end
