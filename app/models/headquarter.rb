@@ -12,6 +12,7 @@ class Headquarter < ApplicationRecord
 
   # Has_many associations
   has_many :services, class_name: '::Service', inverse_of: :headquarter, foreign_key: :headquarter_id
+  has_many :users, class_name: '::User', inverse_of: :headquarter, foreign_key: :headquarter_id
 
   # Many-to-many associations
 
