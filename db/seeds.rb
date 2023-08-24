@@ -8,7 +8,7 @@
   account.save!
 end
 
-::User.find_or_initialize_by(email: 'admin@bsystems.com.br').tap do |user|
+::User.find_or_initialize_by(email: 'admin@b-systems.com.br').tap do |user|
   user.name = 'Administrador'
   user.password = '#Senha123'
   user.password_confirmation = '#Senha123'
