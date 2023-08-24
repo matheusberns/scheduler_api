@@ -5,7 +5,7 @@ module Homepages::Headquarter
     attributes :name,
                :code,
                :uuid,
-               :cpf_cnpj,
+               :cnpj,
                :nickname,
                :zipcode,
                :address,

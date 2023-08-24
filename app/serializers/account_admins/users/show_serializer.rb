@@ -45,7 +45,7 @@ module AccountAdmins
         {
           id: object.headquarter_id,
           name: object.headquarter_name,
-          cpf_cnpj: object.headquarter_cpf_cnpj
+          cnpj: object.headquarter_cnpj
         }
       end
 

@@ -7,7 +7,7 @@ module AccountAdmins
     def index
       @headquarters = @current_user.account.headquarters.list
 
-      @headquarters = apply_filters(@headquarters, :by_cpf_cnpj,
+      @headquarters = apply_filters(@headquarters, :by_cnpj,
                                  :by_name)
 
       render_index_json(@headquarters, ::Homepages::Headquarters::IndexSerializer, 'headquarters')

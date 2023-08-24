@@ -66,7 +66,7 @@ class User < ApplicationRecord
       .select("#{::Account.table_name}.primary_colors account_primary_colors")
       .select("#{::Account.table_name}.secondary_colors account_secondary_colors")
       .select("#{::Headquarter.table_name}.name headquarter_name")
-      .select("#{::Headquarter.table_name}.cpf_cnpj headquarter_cpf_cnpj")
+      .select("#{::Headquarter.table_name}.cnpj headquarter_cnpj")
       .left_joins(:headquarter)
       .left_joins(:account)
       .includes(photo_attachment: :blob)
