@@ -7,6 +7,10 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
     create_table :accounts do |t|
       t.string :name, null: false, index: true
       t.string :base_url
+      t.json :primary_color
+      t.json :secondary_color
+      t.json :primary_colors
+      t.json :secondary_colors
       t.json :campos_personalizados
       t.uuid :uuid, index: true, null: false, default: 'uuid_generate_v4()', unique: true
 
