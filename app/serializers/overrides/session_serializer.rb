@@ -17,6 +17,10 @@ module Overrides
       object.headquarter_ids.size > 1
     end
 
+    def is_headquarter
+      object.headquarter?
+    end
+
     def account
       return if object.account_id.nil?
 

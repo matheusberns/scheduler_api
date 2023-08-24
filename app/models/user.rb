@@ -191,6 +191,10 @@ class User < ApplicationRecord
     )
   end
 
+  def headquarter?
+    headquarter_ids.any?
+  end
+
   def administrator?
     is_admin
   end
