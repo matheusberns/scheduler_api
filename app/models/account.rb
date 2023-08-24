@@ -51,7 +51,6 @@ class Account < ApplicationRecord
 
   # Callbacks
   after_create :default_setup
-  after_create_commit :set_logo_from_account
 
   # Validations
   validates :name, presence: true, length: { maximum: 255 }
@@ -65,12 +64,4 @@ class Account < ApplicationRecord
     ::AccountDefaultSetupJob.perform_now(self) unless Rails.env.test?
   end
 
-  def set_logo_from_account
-    return unless config_account.present?
-    return unless config_account.dig(:image, :url).present?
-
-    full_url = ACCOUNTS_URL + config_account.dig(:image, :url)
-    downloaded_image = URI.parse(full_url).open
-    logo.attach(io: downloaded_image, filename: Time.now.iso8601.to_s)
-  end
 end
