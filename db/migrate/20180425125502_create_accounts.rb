@@ -5,7 +5,7 @@ class CreateAccounts < ActiveRecord::Migration[6.1]
     enable_extension 'pgcrypto'
 
     create_table :accounts do |t|
-      t.string :nome, null: false, index: true
+      t.string :name, null: false, index: true
       t.string :base_url
       t.json :campos_personalizados
       t.uuid :uuid, index: true, null: false, default: 'uuid_generate_v4()', unique: true
