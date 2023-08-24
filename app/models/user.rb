@@ -199,14 +199,6 @@ class User < ApplicationRecord
     is_account_admin
   end
 
-  def headquarter_ids
-    (::Contact.by_cpf(cpf).pluck(:headquarter_id) + [headquarter_id]).compact
-  end
-
-  def headquarter?
-    headquarter_ids.any?
-  end
-
   def administrator_restriction
     return unless administrator? && account_id
 
