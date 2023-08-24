@@ -7,24 +7,24 @@ module Homepages::Budgets
                :synchronized,
                :representative,
                :status,
-               :customer,
+               :headquarter,
                :uuid
 
     def purchase_order
       object.purchase_order.to_i
     end
 
-    def customer
-      return unless object.customer_id
+    def headquarter
+      return unless object.headquarter_id
 
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
 
     def representative
-      return unless object.customer.representative_id
+      return unless object.headquarter.representative_id
 
       {
         name: object.representative_name

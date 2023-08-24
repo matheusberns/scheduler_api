@@ -38,7 +38,7 @@ module Integrations
             'service_subtype' => service.service_subtype,
             'priority_type' => service.priority_type,
             'description' => service.description,
-            customer: { 'code' => service.customer.code },
+            headquarter: { 'code' => service.headquarter.code },
             attachments: attachments
           }
         }.to_json,

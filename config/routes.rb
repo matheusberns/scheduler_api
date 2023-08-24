@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   }
 
   scope module: :homepages do
-    resources :customers, only: %i[index show], controller: 'customers'
+    resources :headquarters, only: %i[index show], controller: 'headquarters'
 
     resources :billings, only: %i[index show], controller: 'billings'
     match 'billings/:id/generate_billet' => 'billings#generate_billet', via: :get

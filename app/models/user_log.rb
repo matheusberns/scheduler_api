@@ -9,7 +9,7 @@ class UserLog < ApplicationRecord
 
   # Belongs_to associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :user_logs, foreign_key: :account_id
-  belongs_to :customer, -> { activated }, class_name: '::Customer', inverse_of: :user_logs, foreign_key: :customer_id
+  belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :user_logs, foreign_key: :headquarter_id
   belongs_to :user, -> { activated }, class_name: '::User', inverse_of: :user_logs, foreign_key: :user_id
 
   # Has_many associations

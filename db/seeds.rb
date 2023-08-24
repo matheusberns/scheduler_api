@@ -4,7 +4,7 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
 ::Account.find_or_initialize_by(name: 'B-Systems').tap do |account|
-  account.base_url = 'http://147.182.164.43'
+  account.base_url = 'http://146.190.45.189'
   account.save!
 end
 

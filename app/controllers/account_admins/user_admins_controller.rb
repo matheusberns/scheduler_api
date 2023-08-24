@@ -8,7 +8,7 @@ module AccountAdmins
     before_action :set_user, only: %i[show update destroy images]
 
     def index
-      @users = @account.users.list.where(customer_id: nil).account_administrator
+      @users = @account.users.list.where(headquarter_id: nil).account_administrator
 
       @users = apply_filters(@users, :active_boolean,
                              :by_name,

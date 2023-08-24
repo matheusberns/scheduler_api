@@ -24,8 +24,8 @@ module Integrations
       budget = {
         purchase_order: budget.purchase_order,
         budget_items: budget_items,
-        customer: {
-          code: budget.customer.code
+        headquarter: {
+          code: budget.headquarter.code
         }
       }
 

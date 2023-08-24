@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # Enumerations
 
   # Belongs_to associations
-  belongs_to :customer, -> { activated }, class_name: '::Customer', inverse_of: :users, foreign_key: :customer_id, optional: true
+  belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :users, foreign_key: :headquarter_id, optional: true
   belongs_to :integration, -> { activated }, class_name: '::Integration', inverse_of: :users, foreign_key: :integration_id, optional: true
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :users, foreign_key: :account_id, optional: true
   belongs_to :state, -> { activated }, class_name: '::Region::State', inverse_of: :users, foreign_key: :state_id, optional: true
@@ -41,11 +41,11 @@ class User < ApplicationRecord
   # Has-many through
   has_many :transporters, through: :account
   has_many :representatives, through: :account
-  has_many :orders, through: :customer
-  has_many :invoices, through: :customer
-  has_many :billings, through: :customer
-  has_many :services, through: :customer
-  has_many :budgets, through: :customer
+  has_many :orders, through: :headquarter
+  has_many :invoices, through: :headquarter
+  has_many :billings, through: :headquarter
+  has_many :services, through: :headquarter
+  has_many :budgets, through: :headquarter
   has_many :order_items, through: :orders
 
   # Scopes
@@ -65,9 +65,9 @@ class User < ApplicationRecord
       .select("#{::Account.table_name}.secondary_color account_secondary_color")
       .select("#{::Account.table_name}.primary_colors account_primary_colors")
       .select("#{::Account.table_name}.secondary_colors account_secondary_colors")
-      .select("#{::Customer.table_name}.name customer_name")
-      .select("#{::Customer.table_name}.cpf_cnpj customer_cpf_cnpj")
-      .left_joins(:customer)
+      .select("#{::Headquarter.table_name}.name headquarter_name")
+      .select("#{::Headquarter.table_name}.cpf_cnpj headquarter_cpf_cnpj")
+      .left_joins(:headquarter)
       .left_joins(:account)
       .includes(photo_attachment: :blob)
       .traceability
@@ -185,7 +185,7 @@ class User < ApplicationRecord
       {
         description: description,
         account_id: account_id,
-        customer_id: customer_id,
+        headquarter_id: headquarter_id,
         date: Time.now
       }
     )
@@ -199,12 +199,12 @@ class User < ApplicationRecord
     is_account_admin
   end
 
-  def customer_ids
-    (::Contact.by_cpf(cpf).pluck(:customer_id) + [customer_id]).compact
+  def headquarter_ids
+    (::Contact.by_cpf(cpf).pluck(:headquarter_id) + [headquarter_id]).compact
   end
 
-  def customer?
-    customer_ids.any?
+  def headquarter?
+    headquarter_ids.any?
   end
 
   def administrator_restriction

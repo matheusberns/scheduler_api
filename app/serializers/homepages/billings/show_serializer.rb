@@ -14,7 +14,7 @@ module Homepages::Billings
                :order_number,
                :uuid,
                :billet,
-               :customer
+               :headquarter
 
     def value
       object.amount
@@ -61,10 +61,10 @@ module Homepages::Billings
       }
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
   end

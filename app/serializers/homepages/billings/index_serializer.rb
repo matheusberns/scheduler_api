@@ -13,7 +13,7 @@ module Homepages::Billings
                :order_number,
                :uuid,
                :billet,
-               :customer
+               :headquarter
 
     def open_days
       return unless object.due_date
@@ -62,10 +62,10 @@ module Homepages::Billings
       end
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
   end

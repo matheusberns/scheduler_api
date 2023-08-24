@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Homepages::Customers
+module Homepages::Headquarter
   class AutocompleteSerializer < BaseSerializer
     attributes :name,
                :code

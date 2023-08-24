@@ -16,7 +16,7 @@ class Order < ApplicationRecord
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :orders, foreign_key: :account_id, required: false
   belongs_to :transporter, -> { activated }, class_name: '::Transporter', inverse_of: :orders, foreign_key: :transporter_id, required: false
   belongs_to :payment_condition, -> { activated }, class_name: '::PaymentCondition', inverse_of: :orders, foreign_key: :payment_condition_id, required: false
-  belongs_to :customer, -> { activated }, class_name: '::Customer', inverse_of: :orders, foreign_key: :customer_id, required: false
+  belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :orders, foreign_key: :headquarter_id, required: false
   belongs_to :budget, -> { activated }, class_name: '::Budget', inverse_of: :orders, foreign_key: :budget_id, required: false
 
   # Has_many associations
@@ -33,17 +33,17 @@ class Order < ApplicationRecord
   # Scopes
   scope :list, lambda {
     select("#{table_name}.*")
-      .select("#{::Customer.table_name}.name customer_name")
-      .joins(:customer)
+      .select("#{::Headquarter.table_name}.name headquarter_name")
+      .joins(:headquarter)
   }
   scope :show, lambda {
     select("#{table_name}.*")
       .select("#{::Transporter.table_name}.name transporter_name")
       .select("#{::PaymentCondition.table_name}.name payment_condition_name")
-      .select("#{::Customer.table_name}.name customer_name")
+      .select("#{::Headquarter.table_name}.name headquarter_name")
       .left_outer_joins(:transporter)
       .left_outer_joins(:payment_condition)
-      .joins(:customer)
+      .joins(:headquarter)
       .traceability
   }
   scope :by_situation, ->(situation) { where(situation: situation) }
@@ -61,7 +61,7 @@ class Order < ApplicationRecord
       where("DATE(#{table_name}.order_date) <= :end_date", end_date: end_date)
     end
   }
-  scope :by_customer_id, ->(customer_id) { where(customer_id: customer_id) }
+  scope :by_headquarter_id, ->(headquarter_id) { where(headquarter_id: headquarter_id) }
 
   # Callbacks
 

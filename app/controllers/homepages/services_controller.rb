@@ -19,7 +19,7 @@ module Homepages
     end
 
     def create
-      @service = @current_user.customer.services.new(service_create_params)
+      @service = @current_user.headquarter.services.new(service_create_params)
 
       if @service.save
         render_show_json(@service, Services::ShowSerializer, 'service', 201)

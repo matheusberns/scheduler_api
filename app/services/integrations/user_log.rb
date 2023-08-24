@@ -2,8 +2,8 @@
 
 module Integrations
   class UserLog < ::Integrations::Base
-    def user_log(customers:)
-      account = ::Account.find(customers[0].account_id)
+    def user_log(headquarters:)
+      account = ::Account.find(headquarters[0].account_id)
 
       external_service = account.external_services.find_by(integration_type: 7)
       return { success: false, message: 'Não existe um serviço externo para integrar o serviço' } unless external_service
@@ -13,14 +13,14 @@ module Integrations
 
       user_logs = []
 
-      customers.each do |customer|
-        customer.user_logs.where('date > :date', date: Date.today.ctime).each do |user_log|
+      headquarters.each do |headquarter|
+        headquarter.user_logs.where('date > :date', date: Date.today.ctime).each do |user_log|
           user_logs << {
             'date' => user_log.date,
             'description' => user_log.description,
             'user_email' => user_log.user.email,
             'user_name' => user_log.user.name,
-            'customer_code' => customer.code
+            'headquarter_code' => headquarter.code
           }
         end
       end

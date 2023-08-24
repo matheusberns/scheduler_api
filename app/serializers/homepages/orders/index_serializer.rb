@@ -14,7 +14,7 @@ module Homepages::Orders
                :delivery_forecast,
                :pdf_file,
                :xls_file,
-               :customer
+               :headquarter
 
     def situation
       return unless object.situation
@@ -42,10 +42,10 @@ module Homepages::Orders
       { url: "#{object.xls_file_name}" }
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
   end

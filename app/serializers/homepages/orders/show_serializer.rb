@@ -14,7 +14,7 @@ module Homepages::Orders
                :delivery_forecast,
                :transporter,
                :payment_condition,
-               :customer
+               :headquarter
 
     def freight_type
       return unless object.freight_type
@@ -43,10 +43,10 @@ module Homepages::Orders
       }
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
 

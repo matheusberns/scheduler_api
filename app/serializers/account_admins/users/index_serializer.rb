@@ -7,7 +7,7 @@ module AccountAdmins
                             :email,
                             :last_sign_in_at,
                             :photo,
-                            :customer_id
+                            :headquarter_id
 
       def last_sign_in_at
         object.last_sign_in_at&.iso8601

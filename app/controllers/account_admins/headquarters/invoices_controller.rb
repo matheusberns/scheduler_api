@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module Homepages::Customers
+module Homepages::Headquarters
   class InvoicesController < BaseController
     before_action :set_invoice, only: :show
 
     def index
-      @invoices = @customer.invoices.list
+      @invoices = @headquarter.invoices.list
 
       @invoices = apply_filters(@invoices, :by_homepage_search,
                                 :by_invoice_type,
@@ -21,7 +21,7 @@ module Homepages::Customers
     private
 
     def set_invoice
-      @invoice = @customer.invoices.show.find(params[:id])
+      @invoice = @headquarter.invoices.show.find(params[:id])
     end
   end
 end

@@ -9,7 +9,7 @@ module Homepages::Services
                :uuid,
                :responsible,
                :service_subtype,
-               :customer
+               :headquarter
 
     def responsible
       return unless object.responsible
@@ -47,10 +47,10 @@ module Homepages::Services
       }
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
   end

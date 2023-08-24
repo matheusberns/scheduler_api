@@ -37,15 +37,15 @@ module AccountAdmins
                  :is_integrator,
                  :created_by,
                  :updated_by,
-                 :customer
+                 :headquarter
 
-      def customer
-        return unless object.customer_id
+      def headquarter
+        return unless object.headquarter_id
 
         {
-          id: object.customer_id,
-          name: object.customer_name,
-          cpf_cnpj: object.customer_cpf_cnpj
+          id: object.headquarter_id,
+          name: object.headquarter_name,
+          cpf_cnpj: object.headquarter_cpf_cnpj
         }
       end
 

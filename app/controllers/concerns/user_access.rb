@@ -29,13 +29,13 @@ module UserAccess
 
   def accessing_account_administrator_controller?
     set_current_user_account
-    set_customers
+    set_headquarters
     account_admin_controller? || common_controller?
   end
 
   def accessing_user_controller?
     set_current_user_account
-    set_customers
+    set_headquarters
     user_controller?
   end
 
@@ -56,7 +56,7 @@ module UserAccess
   end
 
   def allowed_actions?
-    (%w[account_admins/customers
+    (%w[account_admins/headquarters
         account_admins/spaces
         account_admins/spaces/subspaces].include?(accessed_path) &&
       accessed_action == 'autocomplete') ||
@@ -98,8 +98,8 @@ module UserAccess
     @account = ::Account.activated.find(@current_user.account_id)
   end
 
-  def set_customers
-    @customer_ids = @current_user.customer_ids
+  def set_headquarters
+    @headquarter_ids = @current_user.headquarter_ids
   end
 
   def render_unauthorized_access

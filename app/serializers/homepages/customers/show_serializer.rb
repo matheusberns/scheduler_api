@@ -1,22 +1,8 @@
 # frozen_string_literal: true
 
-module Homepages::Customers
+module Homepages::Headquarters
   class ShowSerializer < BaseSerializer
-    attributes :name,
-               :code,
-               :uuid,
-               :cpf_cnpj,
-               :nickname,
-               :zipcode,
-               :address,
-               :address_number,
-               :email,
-               :phone,
-               :secondary_phone,
-               :address_complement,
-               :social_reason,
-               :state,
-               :city,
+    attributes :campos_personalizados,
                :uuid
   end
 end

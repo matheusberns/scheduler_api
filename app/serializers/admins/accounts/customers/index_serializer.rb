@@ -2,7 +2,7 @@
 
 module Admins
   module Accounts
-    module Customers
+    module Headquarters
       class IndexSerializer < BaseSerializer
         attributes :name,
                    :code,

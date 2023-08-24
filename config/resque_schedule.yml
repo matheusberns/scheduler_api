@@ -28,10 +28,10 @@ import_danfe_invoices_job:
   queue: import_danfe_invoices_job
   description: Importar pdf nota
 
-import_customers_job:
+import_headquarters_job:
   cron: "0,10,20,30,40,50 * * * *"
-  class: "ImportCustomersJob"
-  queue: import_customers_job
+  class: "ImportHeadquartersJob"
+  queue: import_headquarters_job
   description: Consulta e atualização cliente e contatos
 
 send_user_logs_job:

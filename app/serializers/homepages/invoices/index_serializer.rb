@@ -7,7 +7,7 @@ module Homepages::Invoices
                :emission_date,
                :invoice_type,
                :purchase_order,
-               :customer,
+               :headquarter,
                :status,
                :uuid,
                :file_danfe,
@@ -71,10 +71,10 @@ module Homepages::Invoices
       end
     end
 
-    def customer
+    def headquarter
       {
-        id: object.customer_id,
-        name: object.customer_name
+        id: object.headquarter_id,
+        name: object.headquarter_name
       }
     end
   end
