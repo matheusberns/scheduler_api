@@ -6,7 +6,6 @@ module Overrides
                :email,
                :is_admin,
                :is_account_admin,
-               :is_headquarter,
                :many_headquarter,
                :headquarter_id,
                :account,
@@ -16,10 +15,6 @@ module Overrides
 
     def many_headquarter
       object.headquarter_ids.size > 1
-    end
-
-    def is_headquarter
-      object.headquarter?
     end
 
     def account
