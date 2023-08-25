@@ -9,8 +9,6 @@ module Overrides
                :many_headquarter,
                :headquarter_id,
                :account,
-               :photo,
-               :tools,
                :photo
 
     def many_headquarter
@@ -34,14 +32,6 @@ module Overrides
         primary_colors: object.account_primary_colors,
         secondary_colors: object.account_secondary_colors
       }
-    end
-
-    def tools
-      return if object.account_id.nil?
-
-      object.account.tools.map do |tool|
-        tool.tool_code
-      end
     end
 
     def photo
