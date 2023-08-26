@@ -4,11 +4,11 @@ class Ibge::UpdateStateAndCitiesJob < ApplicationJob
   queue_as :update_state_and_cities_job
 
   def self.scheduled(_queue, _klass, *_args)
-    UpdateStateAndCitiesJob.update_state_and_cities
+    Ibge::UpdateStateAndCitiesJob.update_state_and_cities
   end
 
   def perform
-    UpdateStateAndCitiesJob.update_state_and_cities
+    Ibge::UpdateStateAndCitiesJob.update_state_and_cities
   end
 
   def self.update_state_and_cities
