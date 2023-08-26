@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Ibge
+module IbgeData
   class State < Base
     def find
       request = self.class.get('/localidades/estados', @options)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Ibge
+module IbgeData
   class Base
     include ::HTTParty
     include ::ActiveModel::Model
