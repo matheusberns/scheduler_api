@@ -11,7 +11,6 @@ class Region::City < ApplicationRecord
   belongs_to :state, -> { activated }, class_name: '::Region::State', inverse_of: :cities, foreign_key: :state_id
 
   # Has_many associations
-  has_many :districts, class_name: '::Region::District', inverse_of: :city, foreign_key: :district_id
   has_many :users, class_name: '::User', inverse_of: :city, foreign_key: :city_id
 
   # Many-to-many associations
