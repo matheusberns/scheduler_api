@@ -2,6 +2,8 @@
 
 module IbgeData
   class State < Base
+    require 'openssl'
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
     def find
       request = self.class.get('/localidades/estados', @options)
       return unless request.ok?
