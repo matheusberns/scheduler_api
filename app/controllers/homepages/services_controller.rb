@@ -5,7 +5,7 @@ module Homepages
     before_action :set_service, only: %i[show update destroy attachment_delete]
 
     def index
-      @services = @account.services.by_headquarter_ids(@headquarter_ids).list
+      @services = @account.headquarter.services.list
 
       @services = apply_filters(@services, :active_boolean,
                                 :by_service_id,
@@ -59,7 +59,7 @@ module Homepages
     private
 
     def set_service
-      @service = @current_user.services.find(params[:id])
+      @service = @current_user.headquarter.services.find(params[:id])
     end
 
     def service_create_params
