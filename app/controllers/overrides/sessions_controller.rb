@@ -72,6 +72,7 @@ module Overrides
 
     def login_account
       request_origin = request&.origin || params[:base_url]
+
       return if request_origin.nil?
 
       @login_account = ::Account.list.find_by(base_url: request_origin)
