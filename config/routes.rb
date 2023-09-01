@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   draw(:current_user)
   draw(:enumeration)
   draw(:integration)
+  draw(:open)
 
   # Regions
   resources :states, controller: 'regions/states', only: :index

@@ -2,6 +2,6 @@
 
 ApiScheduler::Application.routes.draw do
   namespace :open do
-    match 'accounts' => 'homepages/accounts#show', via: :get
+    match 'open/accounts' => 'homepages/accounts#show', via: :get
   end
 end
