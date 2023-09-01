@@ -23,8 +23,6 @@ Rails.application.routes.draw do
   }
 
   scope module: :homepages do
-    match 'list_accounts/:subdominio' => 'homepages/accounts#show', via: :get
-
     resources :headquarters, only: %i[index show], controller: 'headquarters'
 
     resources :billings, only: %i[index show], controller: 'billings'
