@@ -2,7 +2,7 @@
 
 module Homepages
   class AccountsController < ::ApplicationController
-
+    include Renders
     before_action :set_account, only: %i[show]
 
     def show
