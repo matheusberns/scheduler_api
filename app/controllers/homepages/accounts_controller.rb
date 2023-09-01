@@ -3,6 +3,7 @@
 module Homepages
   class AccountsController < ::ApiController
     skip_before_action :authenticate_user!
+    skip_before_action :check_user_access
 
     before_action :set_account, only: %i[show]
 
