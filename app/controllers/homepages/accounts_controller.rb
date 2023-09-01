@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 module Homepages
-  class AccountsController < ::ApplicationController
+  class AccountsController < ::ApiController
+    skip_before_action :authenticate_user!
+
     before_action :set_account, only: %i[show]
 
     def show
