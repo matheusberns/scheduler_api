@@ -71,7 +71,7 @@ module Overrides
     end
 
     def login_account
-      request_origin = request&.origin || params[:base_url]
+      request_origin = request&.origin || params[:base_url] || request&.origin
 
       return if request_origin.nil?
 
