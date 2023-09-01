@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 module Homepages
-  class AccountsController < ::ApiController
-    skip_before_action :authenticate_user!
-    skip_before_action :check_user_access
+  class AccountsController < ::ApplicationController
 
     before_action :set_account, only: %i[show]
 
     def show
       render_show_json(@account, Accounts::ShowSerializer, 'account')
     end
-    
+
     private
 
     def set_account

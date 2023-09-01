@@ -3,6 +3,9 @@
 class ApplicationController < ActionController::API
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  # Renders
+  include Renders
+
   # Devise concerns
   include DeviseTokenAuth::Concerns::SetUserByToken
 
