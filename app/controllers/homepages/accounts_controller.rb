@@ -5,7 +5,7 @@ module Homepages
     before_action :set_account, only: %i[show]
 
     def show
-      render_show_json(@account, Accounts::ShowSerializer, 'account')
+      render_show_json(@account, Homepages::Accounts::ShowSerializer, 'account')
     end
 
     private
