@@ -71,7 +71,7 @@ module Overrides
     end
 
     def login_account
-      request_origin = request&.origin || params[:base_url] || request&.host
+      request_origin = "http://143.198.70.219" #request&.origin || params[:base_url] || request&.host
 
       return if request_origin.nil?
 
