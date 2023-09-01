@@ -1,6 +1,7 @@
 pt-BR:
   errors:
     messages:
+      none_account_not_found: Nenhuma conta encontrada
       attributes_not_well_formatted: Atributos não bem formatados
       bad_request: Requisição inválida
       parameter_missing: 'Parâmetro faltando: %{parameter}'
