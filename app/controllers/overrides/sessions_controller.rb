@@ -71,11 +71,11 @@ module Overrides
     end
 
     def login_account
-      request_origin = "http://143.198.70.219" #request&.origin || params[:base_url] || request&.host
+      request_origin = params[:subdomain]
 
       return if request_origin.nil?
 
-      @login_account = ::Account.list.find_by(base_url: request_origin)
+      @login_account = ::Account.list.find_by(subdomain: request_origin)
     end
 
     def render_login_field_error
@@ -102,7 +102,7 @@ module Overrides
         only_numbers = @login_value.gsub(/\D/, '')
         return unless only_numbers.present?
 
-        ::User.active(true).find_by('cpf' => only_numbers)
+        ::User.active(true).find_by('cellphone' => only_numbers)
 
       end
     end

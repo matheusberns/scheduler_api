@@ -8,6 +8,9 @@ ApiScheduler::Application.routes.draw do
     match 'services/autocomplete' => 'services#autocomplete', via: :get
     resources :services, only: %i[index show create update destroy]
 
+    match 'products/autocomplete' => 'products#autocomplete', via: :get
+    resources :products, only: %i[index show create update destroy]
+
     match 'current_account/show' => 'current_account/accounts#show', via: :get
     match 'current_account/update' => 'current_account/accounts#update', via: %i[put patch]
     match 'current_account/images' => 'current_account/accounts#images', via: %i[put patch]

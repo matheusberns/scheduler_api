@@ -160,7 +160,7 @@ class User < ApplicationRecord
   def send_welcome_mail
     return unless is_new_user
 
-    params = { redirect_url: "#{account.base_url}/alterar-senha", config_name: 'default' }
+    params = { redirect_url: "#{BASE_URL}/alterar-senha", config_name: 'default' }
     @client_config = params[:config_name]
 
     @redirect_url = params.fetch(
