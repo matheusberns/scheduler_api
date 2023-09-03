@@ -13,8 +13,14 @@ module Renders
       fields = params[:attributes].split(',') if params[:attributes].present?
 
       return_name = return_name.camelize(:lower) if params[:key_transform_camel_lower]
+
       json = {
-        return_name => ActiveModelSerializers::SerializableResource.new(paginated_objects, { each_serializer: serializer, params: custom_params, fields: fields, key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil) }).as_json,
+        return_name => ActiveModelSerializers::SerializableResource.new(paginated_objects, {
+          each_serializer: serializer,
+          params: custom_params,
+          fields: fields,
+          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+        }).as_json,
         count: objects.size
       }
 
@@ -44,11 +50,11 @@ module Renders
 
       render json: {
         return_name => ActiveModelSerializers::SerializableResource.new(object_all_fields, {
-                                                                          serializer: serializer,
-                                                                          params: custom_params,
-                                                                          fields: fields,
-                                                                          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
-                                                                        }).as_json
+          serializer: serializer,
+          params: custom_params,
+          fields: fields,
+          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+        }).as_json
       }, status: status
     end
 
@@ -60,11 +66,11 @@ module Renders
 
       object_serialized = if object
                             ActiveModelSerializers::SerializableResource.new(object, {
-                                                                               serializer: serializer,
-                                                                               params: custom_params,
-                                                                               fields: fields,
-                                                                               key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
-                                                                             }).as_json
+                              serializer: serializer,
+                              params: custom_params,
+                              fields: fields,
+                              key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+                            }).as_json
                           else
                             {}
                           end
@@ -90,8 +96,8 @@ module Renders
 
       render json: {
         return_name => enumerators
-          .map { |name, id| { id: id, name: name } }
-          .sort_by { |object| object[:name] }
+                         .map { |name, id| { id: id, name: name } }
+                         .sort_by { |object| object[:name] }
       }, status: :ok
     end
 
@@ -128,10 +134,10 @@ module Renders
       render json: {
         errors: object_errors,
         return_name => ActiveModelSerializers::SerializableResource.new(object, {
-                                                                          serializer: serializer,
-                                                                          fields: fields,
-                                                                          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
-                                                                        }).as_json
+          serializer: serializer,
+          fields: fields,
+          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+        }).as_json
       }, status: :unprocessable_entity
     end
 
