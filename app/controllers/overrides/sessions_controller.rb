@@ -10,7 +10,7 @@ module Overrides
     def create
       render_login_field_error and return unless login_field.present?
 
-      @resource = find_active_devise_resource if @login_account && !Rails.env.development?
+      @resource = find_active_devise_resource if @login_account
 
       render_account_not_found_error and return unless @login_account || @resource&.administrator?
 
@@ -103,7 +103,6 @@ module Overrides
         return unless only_numbers.present?
 
         ::User.active(true).find_by('cellphone' => only_numbers)
-
       end
     end
 

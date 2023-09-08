@@ -11,7 +11,7 @@ module Homepages
     private
 
     def set_account
-      @account = Account.find_by(base_url: params[:subdominio])
+      @account = Account.find_by(subdomain: params[:subdomain])
 
       render_error_json(error: I18n.t('errors.messages.none_account_not_found')) if @account.nil?
     end

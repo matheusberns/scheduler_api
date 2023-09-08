@@ -97,10 +97,12 @@ module AccountAdmins
     def service_params
       params
         .require(:service)
-        .permit(:name,
-                :code,
-                :value,
-                :duration)
+        .permit(:code,
+                :name,
+                :description,
+                :suggestedPrice,
+                :camposPersonalizados)
+        .deep_transform_keys!(&:underscore)
     end
   end
 end

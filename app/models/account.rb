@@ -15,6 +15,7 @@ class Account < ApplicationRecord
 
   # Has_many associations
   has_many :services, class_name: '::Service', inverse_of: :account, foreign_key: :account_id
+  has_many :products, class_name: '::Product', inverse_of: :account, foreign_key: :account_id
   has_many :users, class_name: '::User', inverse_of: :account, foreign_key: :account_id
   has_many :integrations, class_name: '::Integration', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
   has_many :headquarters, class_name: '::Headquarter', inverse_of: :account, foreign_key: :account_id
@@ -57,7 +58,6 @@ class Account < ApplicationRecord
   validates :name, presence: true, length: { maximum: 255 }
   validates_uniqueness_of :uuid, conditions: -> { activated }
   validates_presence_of :base_url
-  validates_uniqueness_of :base_url, conditions: -> { activated }
 
   private
 

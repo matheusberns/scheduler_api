@@ -12,9 +12,8 @@ class Product < ApplicationRecord
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :products, foreign_key: :account_id
 
   # Has_many associations
-  has_many :order_items, -> { activated }, class_name: '::OrderItem', inverse_of: :product, foreign_key: :product_id
-  has_many :product_derivations, -> { activated }, class_name: '::ProductDerivation', inverse_of: :product, foreign_key: :product_id
-  has_many :budget_items, -> { activated }, class_name: '::BudgetItem', inverse_of: :product, foreign_key: :product_id
+  # has_many :scheduling_services , -> { activated }, class_name: '::SchedulingService', inverse_of: :product, foreign_key: :product_id
+  # has_many :scheduling_products , -> { activated }, class_name: '::SchedulingProduct', inverse_of: :product, foreign_key: :product_id
 
   # Many-to-many associations
 

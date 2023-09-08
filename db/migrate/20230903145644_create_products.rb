@@ -1,6 +1,7 @@
 class CreateProducts < ActiveRecord::Migration[6.1]
   def change
     create_table :products do |t|
+      t.string :code, default: "", null: false
       t.string :name, default: "", null: false
       t.string :description, default: "", null: false
       t.float :suggested_price, default: 0.0, null: false
