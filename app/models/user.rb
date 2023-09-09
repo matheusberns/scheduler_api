@@ -192,7 +192,7 @@ class User < ApplicationRecord
   end
 
   def headquarter?
-    headquarter_ids.any?
+    headquarters_ids.any?
   end
 
   def administrator?

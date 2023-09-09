@@ -99,7 +99,7 @@ module UserAccess
   end
 
   def set_headquarters
-    @headquarter_ids = @current_user.account.headquarter_ids
+    @headquarter_ids = @current_user.account.headquarters_ids
   end
 
   def render_unauthorized_access
