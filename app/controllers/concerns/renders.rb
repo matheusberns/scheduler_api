@@ -19,7 +19,7 @@ module Renders
           each_serializer: serializer,
           params: custom_params,
           fields: fields,
-          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+          key_transform: 'camel_lower'
         }).as_json,
         count: objects.size
       }
@@ -53,7 +53,7 @@ module Renders
           serializer: serializer,
           params: custom_params,
           fields: fields,
-          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+          key_transform: 'camel_lower'
         }).as_json
       }, status: status
     end
@@ -69,7 +69,7 @@ module Renders
                               serializer: serializer,
                               params: custom_params,
                               fields: fields,
-                              key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+                              key_transform: 'camel_lower'
                             }).as_json
                           else
                             {}
@@ -136,7 +136,7 @@ module Renders
         return_name => ActiveModelSerializers::SerializableResource.new(object, {
           serializer: serializer,
           fields: fields,
-          key_transform: (params[:key_transform_camel_lower] ? 'camel_lower' : nil)
+          key_transform: 'camel_lower'
         }).as_json
       }, status: :unprocessable_entity
     end

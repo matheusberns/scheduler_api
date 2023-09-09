@@ -11,7 +11,7 @@ class PaymentCondition < ApplicationRecord
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :payment_conditions, foreign_key: :account_id
 
   # Has_many associations
-  has_many :orders, class_name: '::Order', inverse_of: :payment_condition, foreign_key: :payment_condition_id, dependent: :destroy
+  has_many :orders, class_name: '::Schedule', inverse_of: :payment_condition, foreign_key: :payment_condition_id, dependent: :destroy
 
   # Many-to-many associations
 

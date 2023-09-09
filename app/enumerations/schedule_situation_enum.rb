@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class OrderSituationEnum < EnumerateIt::Base
+class ScheduleSituationEnum < EnumerateIt::Base
   associate_values(
     in_analysis: 1,
     processing: 2,

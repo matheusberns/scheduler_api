@@ -19,6 +19,7 @@ class Account < ApplicationRecord
   has_many :users, class_name: '::User', inverse_of: :account, foreign_key: :account_id
   has_many :integrations, class_name: '::Integration', inverse_of: :account, foreign_key: :account_id, dependent: :destroy
   has_many :headquarters, class_name: '::Headquarter', inverse_of: :account, foreign_key: :account_id
+  has_many :schedules, class_name: '::Schedule', inverse_of: :account, foreign_key: :account_id
 
   # Many-to-many associations
   has_many :all_account_tools, class_name: 'Many::AccountTool', foreign_key: :account_id, dependent: :destroy

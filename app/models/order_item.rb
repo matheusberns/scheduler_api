@@ -11,7 +11,7 @@ class OrderItem < ApplicationRecord
   # Belongs_to associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :order_items, foreign_key: :account_id
   belongs_to :product, -> { activated }, class_name: '::Product', inverse_of: :order_items, foreign_key: :product_id
-  belongs_to :order, -> { activated }, class_name: '::Order', inverse_of: :order_items, foreign_key: :order_id
+  belongs_to :order, -> { activated }, class_name: '::Schedule', inverse_of: :order_items, foreign_key: :order_id
 
   # Has_many associations
 

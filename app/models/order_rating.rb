@@ -11,7 +11,7 @@ class OrderRating < ApplicationRecord
   # Belongs_to associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :order_ratings, foreign_key: :account_id, required: false
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :order_ratings, foreign_key: :headquarter_id, required: false
-  belongs_to :order, -> { activated }, class_name: '::Order', inverse_of: :order_ratings, foreign_key: :order_id, required: false
+  belongs_to :order, -> { activated }, class_name: '::Schedule', inverse_of: :order_ratings, foreign_key: :order_id, required: false
 
   # Has_many associations
 
