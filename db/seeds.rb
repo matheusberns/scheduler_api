@@ -15,25 +15,24 @@ end
   account.save!
 end
 
+::User.find_or_initialize_by(email: 'admin@bsystems.com').tap do |user|
+  user.name = 'Admin'
+  user.password = '#Senha123'
+  user.password_confirmation = '#Senha123'
+  user.active = true
+  user.is_admin = true
+  user.deleted_at = nil
+  user.cpf = ''
+  user.cellphone = '47992853827'
+  user.save!
+end
+
 ::User.find_or_initialize_by(email: 'pablo@inspire.com').tap do |user|
   user.name = 'Pablo'
   user.password = '@Pablo2000'
   user.password_confirmation = '@Pablo2000'
   user.active = true
   user.account_id = Account.find_by(name: 'Inspire Barber Studio').id
-  user.is_account_admin = true
-  user.deleted_at = nil
-  user.cpf = ''
-  user.cellphone = '47991011904'
-  user.save!
-end
-
-::User.find_or_initialize_by(email: 'account@bsystems.com').tap do |user|
-  user.name = 'Admin Conta'
-  user.password = '#Senha123'
-  user.password_confirmation = '#Senha123'
-  user.active = true
-  user.account_id = Account.find_by(name: 'B-Systems').id
   user.is_account_admin = true
   user.deleted_at = nil
   user.cpf = ''
