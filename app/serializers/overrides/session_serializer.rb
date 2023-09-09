@@ -12,7 +12,7 @@ module Overrides
                :photo
 
     def many_headquarter
-      object.account.headquarters_ids.size > 1
+      object.account.headquarter_ids.size > 1
     end
 
     def is_headquarter
