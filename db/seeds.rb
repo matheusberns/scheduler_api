@@ -15,18 +15,6 @@ end
   account.save!
 end
 
-::User.find_or_initialize_by(email: 'admin@bsystems.com').tap do |user|
-  user.name = 'Admin'
-  user.password = '#Senha123'
-  user.password_confirmation = '#Senha123'
-  user.active = true
-  user.is_admin = true
-  user.deleted_at = nil
-  user.cpf = ''
-  user.cellphone = '47992853827'
-  user.save!
-end
-
 ::User.find_or_initialize_by(email: 'pablo@inspire.com').tap do |user|
   user.name = 'Pablo'
   user.password = '@Pablo2000'
