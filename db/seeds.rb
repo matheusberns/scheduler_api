@@ -40,6 +40,19 @@ end
   user.save!
 end
 
+::User.find_or_initialize_by(email: 'account@bsystems.com').tap do |user|
+  user.name = 'Admin Conta'
+  user.password = '#Senha123'
+  user.password_confirmation = '#Senha123'
+  user.active = true
+  user.account_id = Account.find_by(name: 'B-Systems').id
+  user.is_account_admin = true
+  user.deleted_at = nil
+  user.cpf = ''
+  user.cellphone = '47991011904'
+  user.save!
+end
+
 ::Integration.find_or_create_by({ token: 'f4f49fd6deed76678e60' }).tap do |integration|
   integration.description = 'B-Systems'
   integration.integration_type = IntegrationTypeEnum::WEB
