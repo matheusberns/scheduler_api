@@ -2,11 +2,9 @@
 
 class ScheduleSituationEnum < EnumerateIt::Base
   associate_values(
-    in_analysis: 1,
-    processing: 2,
-    concluded: 3,
-    refused: 4
-
+    confirmed: 1,
+    pending: 2,
+    canceled: 3
   )
 
   sort_by :value

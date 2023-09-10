@@ -27,8 +27,6 @@ module AccountAdmins
     end
 
     def create
-      debugger
-      debugger
       @product = @account.products.new(product_create_params)
 
       if @product.save
