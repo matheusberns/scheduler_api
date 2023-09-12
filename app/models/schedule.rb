@@ -5,17 +5,18 @@ class Schedule < ApplicationRecord
   include Age
 
   # Active storage
+  attr_accessor :service_ids, :product_ids
 
   # Enumerations
   has_enumeration_for :situation, with: ::ScheduleSituationEnum, create_helpers: { prefix: true }, required: true
 
   # Belongs_to associations
-  belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :orders, foreign_key: :account_id, required: false
-  belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :orders, foreign_key: :headquarter_id, required: false
+  belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :schedules, foreign_key: :account_id, required: false
+  belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :schedules, foreign_key: :headquarter_id, required: false
 
   # Has_many associations
-  # has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :order, foreign_key: :order_id
-  # has_many :schedule_services, -> { activated }, class_name: '::ScheduleService', inverse_of: :order, foreign_key: :order_id
+  has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id
+  has_many :schedule_services, -> { activated }, class_name: '::ScheduleService', inverse_of: :schedule, foreign_key: :schedule_id
 
   # Many-to-many associations
 
