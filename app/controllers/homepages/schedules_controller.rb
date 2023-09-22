@@ -77,11 +77,12 @@ module Homepages
                 :situation,
                 :discount,
                 :total,
-                :customer_id,
-                :professional_id,
-                :service_ids,
-                :product_ids,
-                :campos_personalizados)
+                :customerId,
+                :professionalId,
+                :serviceIds,
+                :productIds,
+                :camposPersonalizados)
+        .deep_transform_keys!(&:underscore)
     end
   end
 end
