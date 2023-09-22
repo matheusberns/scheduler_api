@@ -5,6 +5,9 @@ ApiScheduler::Application.routes.draw do
     match 'headquarters/autocomplete' => 'headquarters#autocomplete', via: :get
     resources :headquarters, only: %i[index show create update destroy]
 
+    resources :schedules, except: %i[new edit], controller: 'schedules'
+    match 'schedules/:id/recover' => 'schedules#recover', via: %i[patch put]
+
     match 'services/autocomplete' => 'services#autocomplete', via: :get
     resources :services, only: %i[index show create update destroy]
 
