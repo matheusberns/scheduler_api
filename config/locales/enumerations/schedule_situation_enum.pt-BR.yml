@@ -1,0 +1,6 @@
+pt-BR:
+  enumerations:
+    schedule_situation_enum:
+      confirmed: Confirmado
+      pending: Pendente
+      canceled: Cancelado
