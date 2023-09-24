@@ -42,12 +42,13 @@ class User < ApplicationRecord
   # Has-many through
   has_many :transporters, through: :account
   has_many :representatives, through: :account
-  has_many :orders, through: :headquarter
+  has_many :schedules, through: :headquarter
   has_many :invoices, through: :headquarter
   has_many :billings, through: :headquarter
   has_many :services, through: :headquarter
   has_many :budgets, through: :headquarter
-  has_many :order_items, through: :orders
+  has_many :schedule_products, through: :schedules
+  has_many :schedule_services, through: :schedules
 
   # Scopes
   scope :list, lambda {

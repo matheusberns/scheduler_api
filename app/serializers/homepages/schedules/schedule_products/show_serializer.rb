@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Homepages::Orders::OrderItems
+module Homepages::Schedules::OrderItems
   class ShowSerializer < BaseSerializer
     attributes :quantity,
                :product,
