@@ -33,6 +33,7 @@ class Schedule < ApplicationRecord
     select("#{table_name}.*")
       .select("#{::Headquarter.table_name}.name headquarter_name")
       .joins(:headquarter)
+      .includes(:schedule_services, :schedule_products)
       .traceability
   }
   scope :by_situation, ->(situation) { where(situation: situation) }

@@ -2,46 +2,16 @@
 
 module Homepages::Schedules
   class ShowSerializer < BaseSerializer
-    attributes :budget_date,
-               :order_number,
-               :order_date,
-               :value,
+    attributes :scheduled_date,
                :situation,
-               :purchase_order,
-               :freight_type,
-               :delivery_address,
-               :freight_value,
-               :delivery_forecast,
-               :transporter,
-               :payment_condition,
-               :headquarter
-
-    def freight_type
-      return unless object.freight_type
-
-      {
-        id: object.freight_type,
-        name: object.freight_type_humanize
-      }
-    end
-
-    def transporter
-      return unless object.transporter_id
-
-      {
-        id: object.transporter_id,
-        name: object.transporter_name
-      }
-    end
-
-    def payment_condition
-      return unless object.payment_condition_id
-
-      {
-        id: object.payment_condition_id,
-        name: object.payment_condition_name
-      }
-    end
+               :discount,
+               :total,
+               :customer_id,
+               :professional_id,
+               :headquarter_id,
+               :campos_personalizados,
+               :services,
+               :products
 
     def headquarter
       {
@@ -57,6 +27,28 @@ module Homepages::Schedules
         id: object.situation,
         name: object.situation_humanize
       }
+    end
+
+    def services
+      object.schedule_services.map do |schedule_service|
+
+        {
+          id: schedule_service.id,
+          name: schedule_service.service.name,
+          price: schedule_service.price
+        }
+      end
+    end
+
+    def products
+      object.schedule_products.map do |schedule_product|
+
+        {
+          id: schedule_product.id,
+          name: schedule_product.product.name,
+          price: schedule_product.price
+        }
+      end
     end
   end
 end

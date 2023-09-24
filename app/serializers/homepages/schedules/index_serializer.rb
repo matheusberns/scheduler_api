@@ -2,19 +2,23 @@
 
 module Homepages::Schedules
   class IndexSerializer < BaseSerializer
-    attributes :budget_date,
-               :order_number,
-               :order_date,
-               :value,
+    attributes :scheduled_date,
                :situation,
-               :purchase_order,
-               :freight_type,
-               :delivery_address,
-               :freight_value,
-               :delivery_forecast,
-               :pdf_file,
-               :xls_file,
-               :headquarter
+               :discount,
+               :total,
+               :customer_id,
+               :professional_id,
+               :headquarter_id,
+               :campos_personalizados,
+               :services,
+               :products
+
+    def headquarter
+      {
+        id: object.headquarter_id,
+        name: object.headquarter_name
+      }
+    end
 
     def situation
       return unless object.situation
@@ -25,28 +29,26 @@ module Homepages::Schedules
       }
     end
 
-    def freight_type
-      return unless object.freight_type
+    def services
+      object.schedule_services.map do |schedule_service|
 
-      {
-        id: object.freight_type,
-        name: object.freight_type_humanize
-      }
+        {
+          id: schedule_service.id,
+          name: schedule_service.service.name,
+          price: schedule_service.price
+        }
+      end
     end
 
-    def pdf_file
-      { url: "#{object.pdf_file_name}" }
-    end
+    def products
+      object.schedule_products.map do |schedule_product|
 
-    def xls_file
-      { url: "#{object.xls_file_name}" }
-    end
-
-    def headquarter
-      {
-        id: object.headquarter_id,
-        name: object.headquarter_name
-      }
+        {
+          id: schedule_product.id,
+          name: schedule_product.product.name,
+          price: schedule_product.price
+        }
+      end
     end
   end
 end

@@ -73,7 +73,7 @@ module Homepages
     def schedule_params
       params
         .require(:schedule)
-        .permit(:scheduled_date,
+        .permit(:scheduledDate,
                 :situation,
                 :discount,
                 :total,
