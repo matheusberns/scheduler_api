@@ -7,7 +7,7 @@ class CreateScheduleServices < ActiveRecord::Migration[6.1]
       t.json :campos_personalizados
       t.uuid :uuid, index: true, null: false, default: 'uuid_generate_v4()', unique: true
 
-      t.references :scheduler, index: true, foreign_key: { to_table: :schedules }
+      t.references :schedule, index: true, foreign_key: { to_table: :schedules }
       t.references :service, index: true, foreign_key: { to_table: :services }
 
       t.references :created_by, index: true, foreign_key: { to_table: :users }
