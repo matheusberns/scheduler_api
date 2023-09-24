@@ -28,32 +28,12 @@ Rails.application.routes.draw do
 
     resources :headquarters, only: %i[index show], controller: 'headquarters'
 
-    resources :billings, only: %i[index show], controller: 'billings'
-    match 'billings/:id/generate_billet' => 'billings#generate_billet', via: :get
-    match 'billings/:id/duplicate_billet' => 'billings#duplicate_billet', via: :get
-
-    match 'budgets/:id/integrate' => 'budgets#integrate', via: %i[put patch]
-    resources :budgets, except: %i[new edit], controller: 'budgets' do
-      resources :budget_items, except: %i[new edit], controller: 'budgets/budget_items'
-    end
-
-    match 'dashboards/get_annual_orders' => 'dashboards#get_annual_orders', via: :get
-    match 'dashboards/get_billings_by_status' => 'dashboards#get_billings_by_status', via: :get
-    match 'dashboards/get_open_billings' => 'dashboards#get_open_billings', via: :get
-
-    resources :installments, except: %i[new edit], controller: 'installments'
-
-    resources :invoices, only: %i[index show], controller: 'invoices'
-
-    resources :schedules, except: %i[new edit], controller: 'schedules'
-    match 'schedules/:id/recover' => 'schedules#recover', via: %i[patch put]
-
     resources :news, except: %i[new edit], controller: 'news'
     match 'news/:id/recover' => 'news#recover', via: %i[patch put]
 
-    resources :orders, only: %i[index show], controller: 'orders' do
-      resources :order_items, only: %i[index show], controller: 'orders/order_items'
-      resources :order_ratings, except: %i[new edit], controller: 'orders/order_ratings'
+    resources :schedules, only: %i[index show], controller: 'schedules' do
+      resources :schedule_products, only: %i[index show], controller: 'schedules/schedule_products'
+      resources :schedule_services, except: %i[new edit], controller: 'schedules/schedule_services'
     end
 
     resources :payment_conditions, only: %i[index show], controller: 'payment_conditions'
