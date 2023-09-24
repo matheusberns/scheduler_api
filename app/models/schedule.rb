@@ -16,8 +16,8 @@ class Schedule < ApplicationRecord
   belongs_to :customer, class_name: '::User', inverse_of: :schedules, foreign_key: :customer_id, required: false
 
   # Has_many associations
-  has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
-  has_many :schedule_services, -> { activated }, class_name: '::ScheduleService', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
+  has_many :schedule_products, class_name: 'Many::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
+  has_many :schedule_services, class_name: 'Many::ScheduleService', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
 
   # Many-to-many associations
 
