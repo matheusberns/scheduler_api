@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :news, except: %i[new edit], controller: 'news'
     match 'news/:id/recover' => 'news#recover', via: %i[patch put]
 
-    resources :schedules, only: %i[index show], controller: 'schedules' do
+    resources :schedules, except: %i[new edit], controller: 'schedules' do
       resources :schedule_products, only: %i[index show], controller: 'schedules/schedule_products'
       resources :schedule_services, except: %i[new edit], controller: 'schedules/schedule_services'
     end
