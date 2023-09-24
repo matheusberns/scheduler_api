@@ -45,6 +45,9 @@ Rails.application.routes.draw do
 
     resources :invoices, only: %i[index show], controller: 'invoices'
 
+    resources :schedules, except: %i[new edit], controller: 'schedules'
+    match 'schedules/:id/recover' => 'schedules#recover', via: %i[patch put]
+
     resources :news, except: %i[new edit], controller: 'news'
     match 'news/:id/recover' => 'news#recover', via: %i[patch put]
 

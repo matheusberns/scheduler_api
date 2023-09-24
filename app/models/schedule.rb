@@ -15,8 +15,8 @@ class Schedule < ApplicationRecord
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :schedules, foreign_key: :headquarter_id, required: false
 
   # Has_many associations
-  has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id
-  has_many :schedule_services, -> { activated }, class_name: '::ScheduleService', inverse_of: :schedule, foreign_key: :schedule_id
+  has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
+  has_many :schedule_services, -> { activated }, class_name: '::ScheduleService', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
 
   # Many-to-many associations
 
@@ -50,6 +50,35 @@ class Schedule < ApplicationRecord
   scope :by_headquarter_id, ->(headquarter_id) { where(headquarter_id: headquarter_id) }
 
   # Callbacks
+  after_commit :set_services, :set_products
 
   # Validations
+
+  # TODO Refatorar para classe de service.
+  def set_services
+    return if service_ids.nil?
+
+    service_ids.each do |service_id|
+      schedule_service = schedule_services.find_or_initialize_by(service_id: service_id)
+      schedule_service.active = true
+      schedule_service.deleted_at = nil
+      schedule_service.save
+    end
+
+    schedule_services.where.not(service_id: service_ids).destroy_all
+  end
+
+  # TODO Refatorar para classe de service.
+  def set_products
+    return if product_ids.nil?
+
+    product_ids.each do |product_id|
+      schedule_product = schedule_products.find_or_initialize_by(product_id: product_id)
+      schedule_product.active = true
+      schedule_product.deleted_at = nil
+      schedule_product.save
+    end
+
+    schedule_products.where.not(product_id: product_ids).destroy_all
+  end
 end

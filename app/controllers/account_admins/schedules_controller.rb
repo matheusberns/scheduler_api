@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
-module Homepages
+module AccountAdmins
   class SchedulesController < ::ApiController
-    before_action :set_headquarter, only: %i[create show update destroy]
-    before_action :set_schedule, only: %i[show update destroy]
+    before_action :set_schedule, only: %i[show update destroy attachment_delete]
 
     def index
-      @schedules = @headquarter.schedules.list
+      @schedules = @current_user.headquarter.schedules.list
 
       @schedules = apply_filters(@schedules, :active_boolean,
                                  :by_schedule_id,
@@ -20,7 +19,7 @@ module Homepages
     end
 
     def create
-      @schedule = @headquarter.schedules.new(schedule_create_params)
+      @schedule = @current_user.headquarter.schedules.new(schedule_create_params)
 
       if @schedule.save
         render_show_json(@schedule, Schedules::ShowSerializer, 'schedule', 201)
@@ -48,7 +47,7 @@ module Homepages
     end
 
     def recover
-      @schedule = Schedule.list.active(false).find(params[:id])
+      @schedule = @current_user.schedules.list.active(false).find(params[:id])
 
       if @schedule.recover
         render_show_json(@schedule, Schedules::ShowSerializer, 'schedule')
@@ -60,15 +59,11 @@ module Homepages
     private
 
     def set_schedule
-      @schedule = @headquarter.schedules.find(params[:id])
-    end
-
-    def set_headquarter
-      @headquarter = @account.headquarters.find(params[:id])
+      @schedule = @current_user.headquarter.schedules.find(params[:id])
     end
 
     def schedule_create_params
-      schedule_params.merge(created_by_id: @current_user.id, account_id: @current_user.account_id)
+      schedule_params.merge(created_by_id: @current_user.id, account_id: @current_user.account_id, date: Time.now)
     end
 
     def schedule_update_params
