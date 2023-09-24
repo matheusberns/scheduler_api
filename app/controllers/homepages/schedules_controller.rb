@@ -2,11 +2,10 @@
 
 module Homepages
   class SchedulesController < ::ApiController
-    before_action :set_headquarter, only: %i[create show update destroy]
     before_action :set_schedule, only: %i[show update destroy]
 
     def index
-      @schedules = @headquarter.schedules.list
+      @schedules = @account.schedules.list.by_headquarter_id(@current_user.id)
 
       @schedules = apply_filters(@schedules, :active_boolean,
                                  :by_schedule_id,
@@ -20,7 +19,7 @@ module Homepages
     end
 
     def create
-      @schedule = @headquarter.schedules.new(schedule_create_params)
+      @schedule = @account.schedules.new(schedule_create_params)
 
       if @schedule.save
         render_show_json(@schedule, Schedules::ShowSerializer, 'schedule', 201)
@@ -60,11 +59,7 @@ module Homepages
     private
 
     def set_schedule
-      @schedule = @headquarter.schedules.find(params[:id])
-    end
-
-    def set_headquarter
-      @headquarter = @account.headquarters.find(params[:id])
+      @schedule = @account.schedules.find(params[:id])
     end
 
     def schedule_create_params
@@ -84,9 +79,10 @@ module Homepages
                 :total,
                 :customerId,
                 :professionalId,
-                :serviceIds,
-                :productIds,
-                :camposPersonalizados)
+                :headquarterId,
+                :camposPersonalizados,
+                services: %i[id price],
+                products: %i[id price])
         .deep_transform_keys!(&:underscore)
     end
   end

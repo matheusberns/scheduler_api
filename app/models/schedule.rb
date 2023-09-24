@@ -13,6 +13,7 @@ class Schedule < ApplicationRecord
   # Belongs_to associations
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :schedules, foreign_key: :account_id, required: false
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :schedules, foreign_key: :headquarter_id, required: false
+  belongs_to :customer, class_name: '::User', inverse_of: :schedules, foreign_key: :customer_id, required: false
 
   # Has_many associations
   has_many :schedule_products, -> { activated }, class_name: '::ScheduleProduct', inverse_of: :schedule, foreign_key: :schedule_id, dependent: :destroy
