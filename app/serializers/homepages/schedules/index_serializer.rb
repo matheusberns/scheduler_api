@@ -52,7 +52,7 @@ module Homepages::Schedules
     end
 
     def total
-      (object.schedule_products.pluck(:price).sum.to_f + object.schedule_services.pluck(:price).sum.to_f) - discount.to_f
+      (object.schedule_products.pluck(:price).sum.to_f + object.schedule_services.pluck(:price).sum.to_f) - object.discount.to_f
     end
   end
 end
