@@ -5,7 +5,7 @@ module AccountAdmins
     before_action :set_schedule, only: %i[show update destroy attachment_delete]
 
     def index
-      @schedules = @current_user.headquarter.schedules.list
+      @schedules = @account.schedules.list
 
       @schedules = apply_filters(@schedules, :active_boolean,
                                  :by_schedule_id,
