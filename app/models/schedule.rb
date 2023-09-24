@@ -5,7 +5,7 @@ class Schedule < ApplicationRecord
   include Age
 
   # Active storage
-  attr_accessor :service_ids, :product_ids
+  attr_accessor :services, :products
 
   # Enumerations
   has_enumeration_for :situation, with: ::ScheduleSituationEnum, create_helpers: { prefix: true }, required: true
@@ -57,29 +57,31 @@ class Schedule < ApplicationRecord
 
   # TODO Refatorar para classe de service.
   def set_services
-    return if service_ids.nil?
+    return if services.nil?
 
-    service_ids.each do |service_id|
-      schedule_service = schedule_services.find_or_initialize_by(service_id: service_id)
+    services.each do |service|
+      schedule_service = schedule_services.find_or_initialize_by(service_id: service['id'])
+      schedule_service.price = product['price']
       schedule_service.active = true
       schedule_service.deleted_at = nil
       schedule_service.save
     end
 
-    schedule_services.where.not(service_id: service_ids).destroy_all
+    schedule_services.where.not(service_id: services).destroy_all
   end
 
   # TODO Refatorar para classe de service.
   def set_products
-    return if product_ids.nil?
+    return if products.nil?
 
-    product_ids.each do |product_id|
-      schedule_product = schedule_products.find_or_initialize_by(product_id: product_id)
+    products.each do |product|
+      schedule_product = schedule_products.find_or_initialize_by(product_id: product['id'])
+      schedule_product.price = product['price']
       schedule_product.active = true
       schedule_product.deleted_at = nil
       schedule_product.save
     end
 
-    schedule_products.where.not(product_id: product_ids).destroy_all
+    schedule_products.where.not(product_id: products).destroy_all
   end
 end
