@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_one_attached :driver_license_photo
 
   # Enumerations
+  has_enumeration_for :profile_type, with: ::ProfileTypeEnum, create_helpers: { prefix: true }, required: true
 
   # Belongs_to associations
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :users, foreign_key: :headquarter_id, optional: true
