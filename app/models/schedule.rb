@@ -49,7 +49,9 @@ class Schedule < ApplicationRecord
       where("DATE(#{table_name}.scheduled_date) <= :end_date", end_date: end_date)
     end
   }
-  scope :by_headquarter_id, ->(headquarter_id) { where(headquarter_id: headquarter_id) }
+  scope :by_headquarter_id, ->(current_user) {
+    where(headquarter_id: current_user.headquarter_id) if current_user.headquarter_id
+  }
 
   # Callbacks
   after_commit :set_services, :set_products

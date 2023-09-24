@@ -5,7 +5,7 @@ module Homepages
     before_action :set_schedule, only: %i[show update destroy]
 
     def index
-      @schedules = @account.schedules.list.by_headquarter_id(@current_user.id)
+      @schedules = @account.schedules.list.by_headquarter_id(@current_user)
 
       @schedules = apply_filters(@schedules, :active_boolean,
                                  :by_schedule_id,
