@@ -30,7 +30,6 @@ module Homepages
 
     def update
       if @schedule.update(schedule_update_params)
-        add_images if params[:schedule][:attachments]
 
         render_show_json(@schedule, Schedules::ShowSerializer, 'schedule', 200)
       else
