@@ -101,6 +101,7 @@ module AccountAdmins
                 :name,
                 :description,
                 :suggestedPrice,
+                :default_duration,
                 :camposPersonalizados)
         .deep_transform_keys!(&:underscore)
     end

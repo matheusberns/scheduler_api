@@ -72,15 +72,15 @@ module Homepages
     def schedule_params
       params
         .require(:schedule)
-        .permit(:scheduledDate,
-                :situation,
+        .permit(:total,
                 :discount,
-                :total,
+                :situation,
                 :customerId,
-                :professionalId,
+                :scheduledDate,
                 :headquarterId,
+                :professionalId,
                 :camposPersonalizados,
-                services: %i[id price],
+                services: %i[id price duration],
                 products: %i[id price])
         .deep_transform_keys!(&:underscore)
     end

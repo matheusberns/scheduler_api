@@ -73,15 +73,16 @@ module AccountAdmins
     def schedule_params
       params
         .require(:schedule)
-        .permit(:scheduled_date,
-                :situation,
+        .permit(:total,
                 :discount,
-                :total,
+                :situation,
                 :customerId,
+                :scheduledDate,
+                :headquarterId,
                 :professionalId,
-                :serviceIds,
-                :productIds,
-                :camposPersonalizados)
+                :camposPersonalizados,
+                services: %i[id price duration],
+                products: %i[id price])
         .deep_transform_keys!(&:underscore)
     end
   end

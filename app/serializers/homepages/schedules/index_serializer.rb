@@ -35,7 +35,8 @@ module Homepages::Schedules
         {
           id: schedule_service.id,
           name: schedule_service.service.name,
-          price: schedule_service.price
+          price: schedule_service.price,
+          duration: schedule_service.duration
         }
       end
     end
