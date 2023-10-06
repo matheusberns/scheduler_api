@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '6.1.4.1'
+gem 'rails', '7.0.8'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.3'
 # Use Puma as the app server
@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Token based authentication for Rails JSON APIs.
-gem 'devise', '~> 4.7.3'
+gem 'devise'
 gem 'devise_token_auth'
 
 # Enumerations for Ruby with some magic powers!
