@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Homepages::Orders::OrderRatings
+module Homepages::Schedules::ScheduleRatings
   class IndexSerializer < BaseSerializer
     attributes :rating,
                :description,

@@ -2,50 +2,12 @@
 
 module Homepages::Services
   class ShowSerializer < BaseSerializer
-    attributes :date,
-               :service_type,
-               :status,
+    attributes :uuid,
+               :suggested_price,
+               :code,
+               :name,
                :description,
-               :uuid,
-               :responsible,
-               :service_subtype,
-               :attachments,
-               :headquarter
-
-    def responsible
-      return unless object.responsible
-
-      {
-        id: object.responsible_id,
-        name: object.responsible_name
-      }
-    end
-
-    def attachments
-      object.attachments.map do |file|
-        {
-          id: file.id,
-          url: rails_blob_path(file, only_path: true),
-          content_type: file.blob.content_type,
-          filename: file.blob[:filename]
-        }
-      end
-    end
-
-    def status
-      return unless object.status
-
-      {
-        id: object.status,
-        name: object.status_humanize
-      }
-    end
-
-    def headquarter
-      {
-        id: object.headquarter_id,
-        name: object.headquarter_name
-      }
-    end
+               :default_duration,
+               :campos_personalizados
   end
 end

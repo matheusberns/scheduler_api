@@ -9,7 +9,17 @@ module Overrides
                :many_headquarter,
                :headquarter_id,
                :account,
-               :photo
+               :photo,
+               :profile_type
+
+    def profile_type
+      return unless object.profile_type
+
+      {
+        id: object.profile_type,
+        name: object.profile_type_humanize
+      }
+    end
 
     def many_headquarter
       object.account.headquarter_ids.size > 1

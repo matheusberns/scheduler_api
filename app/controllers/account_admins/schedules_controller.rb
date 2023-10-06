@@ -5,7 +5,7 @@ module AccountAdmins
     before_action :set_schedule, only: %i[show update destroy attachment_delete]
 
     def index
-      @schedules = @current_user.headquarter.schedules.list
+      @schedules = @account.schedules.list
 
       @schedules = apply_filters(@schedules, :active_boolean,
                                  :by_schedule_id,
@@ -73,15 +73,16 @@ module AccountAdmins
     def schedule_params
       params
         .require(:schedule)
-        .permit(:scheduled_date,
-                :situation,
+        .permit(:total,
                 :discount,
-                :total,
+                :situation,
                 :customerId,
+                :scheduledDate,
+                :headquarterId,
                 :professionalId,
-                :serviceIds,
-                :productIds,
-                :camposPersonalizados)
+                :camposPersonalizados,
+                services: %i[id price duration],
+                products: %i[id price])
         .deep_transform_keys!(&:underscore)
     end
   end

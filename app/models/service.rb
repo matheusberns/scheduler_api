@@ -14,6 +14,7 @@ class Service < ApplicationRecord
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :services, foreign_key: :headquarter_id, required: false
 
   # Has_many associations
+  has_many :schedule_services, class_name: 'Many::ScheduleService', inverse_of: :services, foreign_key: :service_id
 
   # Many-to-many associations
 

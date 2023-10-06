@@ -7,6 +7,7 @@ module AccountAdmins::Services
                :code,
                :name,
                :description,
+               :default_duration,
                :campos_personalizados
   end
 end
