@@ -120,7 +120,7 @@ module AccountAdmins
     end
 
     def user_create_params
-      create_params.merge(created_by_id: @current_user.id)
+      create_params.merge(created_by_id: @current_user.id, profile_type: ProfileTypeEnum::PROFESSIONAL)
     end
 
     def user_update_params
