@@ -58,7 +58,7 @@ module Homepages
     private
 
     def set_schedule
-      @schedule = @account.schedules.find(params[:id])
+        @schedule = @account.schedules.find(params[:id])
     end
 
     def schedule_create_params
@@ -72,8 +72,7 @@ module Homepages
     def schedule_params
       params
         .require(:schedule)
-        .permit(:total,
-                :discount,
+        .permit(:discount,
                 :situation,
                 :customerId,
                 :scheduledDate,

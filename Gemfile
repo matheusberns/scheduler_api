@@ -54,7 +54,7 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Token based authentication for Rails JSON APIs.
-gem 'devise', '~> 4.7.3'
+gem 'devise', '4.7.3'
 gem 'devise_token_auth'
 
 # Enumerations for Ruby with some magic powers!

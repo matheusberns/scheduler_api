@@ -57,17 +57,18 @@ class Schedule < ApplicationRecord
   after_commit :set_services, :set_products
 
   # Validations
+  validates_presence_of :scheduled_date
 
-  # TODO Refatorar para classe de service.
   def set_services
     return if services.nil?
 
     services.each do |service|
       schedule_service = schedule_services.find_or_initialize_by(service_id: service['id'])
       schedule_service.price = service['price']
+      schedule_service.duration = service['duration']
       schedule_service.active = true
       schedule_service.deleted_at = nil
-      schedule_service.save
+      schedule_service.save!
     end
 
     schedule_services.where.not(service_id: services).destroy_all
@@ -82,7 +83,7 @@ class Schedule < ApplicationRecord
       schedule_product.price = product['price']
       schedule_product.active = true
       schedule_product.deleted_at = nil
-      schedule_product.save
+      schedule_product.save!
     end
 
     schedule_products.where.not(product_id: products).destroy_all

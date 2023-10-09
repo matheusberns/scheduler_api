@@ -33,8 +33,9 @@ module Homepages::Schedules
       object.schedule_services.map do |schedule_service|
 
         {
-          id: schedule_service.id,
+          id: schedule_service.service_id,
           name: schedule_service.service.name,
+          duration: schedule_service.duration,
           price: schedule_service.price
         }
       end
@@ -44,7 +45,7 @@ module Homepages::Schedules
       object.schedule_products.map do |schedule_product|
 
         {
-          id: schedule_product.id,
+          id: schedule_product.product_id,
           name: schedule_product.product.name,
           price: schedule_product.price
         }
