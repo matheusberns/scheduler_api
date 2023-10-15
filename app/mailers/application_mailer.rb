@@ -10,10 +10,10 @@ class ApplicationMailer < ActionMailer::Base
       user_name: account.smtp_user,
       password: account.smtp_password,
       address: account.smtp_host,
-      port: 587,
+      port: 465,
       authentication: :login,
       enable_starttls_auto: true,
-      ssl: true
+      openssl_verify_mode: 'none'
     }
   end
 end
