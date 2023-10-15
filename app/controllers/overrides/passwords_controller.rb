@@ -13,6 +13,8 @@ module Overrides
 
       if @resource
         yield @resource if block_given?
+        Rails.logger.info("USUÁRIO: #{@resource}")
+
         if @resource.account.try(:smtp_email)
           @client_config = params[:config_name] ||= 'default'
 
