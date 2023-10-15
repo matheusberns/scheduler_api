@@ -92,6 +92,6 @@ Rails.application.configure do
     user_name: 'nao-responda@bsystems.net.br',
     password: '1@2B3s4y5s6t7e8m9s10',
     authentication: :login,
-    enable_starttls_auto: false
+    enable_starttls_auto: true
   }
 end
