@@ -11,7 +11,12 @@ module Homepages::Schedules
                :headquarter_id,
                :campos_personalizados,
                :services,
-               :products
+               :products,
+               :final_hour
+
+    def final_hour
+      object.scheduled_date + object.schedule_services.sum(:duration).minutes
+    end
 
     def headquarter
       {

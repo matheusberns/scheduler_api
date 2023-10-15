@@ -7,7 +7,7 @@ module Overrides
       return render_create_error_missing_email unless resource_params[:email]
 
       @email = get_case_insensitive_field_from_resource_params(:email)
-      @resource = resource_class.dta_find_by(email: @email)
+      @resource = resource_class.dta_find_by(email: @email) || resource_class.dta_find_by(personal_email: @email)
 
       set_default_url_to_email
 
@@ -18,10 +18,11 @@ module Overrides
 
           @resource.send_reset_password_instructions(
             email: @email,
+            to: @email,
             provider: 'email',
             redirect_url: @redirect_url,
             authkey: AUTH_KEY,
-            client_config: params[:config_name]
+            client_config: @client_config
           )
 
           if @resource.errors.empty?
@@ -104,8 +105,8 @@ module Overrides
       render json: { errors: { base: I18n.t('.devise_token_auth.passwords.user_not_found', email: resource_params[:email]) } }, status: 401
     end
 
-    def render_edit_error
-      render json: { errors: { base: I18n.t('.devise_token_auth.passwords.reset_password_token') } }, status: 401
+    def render_config_not_found
+      render json: { errors: { base: I18n.t('.devise_token_auth.passwords.config_not_found', email: resource_params[:email]) } }, status: 401
     end
 
     def render_create_error(errors)
@@ -115,6 +116,10 @@ module Overrides
         object_errors[field] = field_errors.first
       end
       render json: { errors: object_errors }, status: :unprocessable_entity
+    end
+
+    def render_edit_error
+      render json: { errors: { base: I18n.t('.devise_token_auth.passwords.reset_password_token') } }, status: 401
     end
 
     private

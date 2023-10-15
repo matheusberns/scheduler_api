@@ -12,7 +12,6 @@ class Integration < ApplicationRecord
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :integrations, foreign_key: :account_id
 
   # Has_many associations
-  has_many :users, class_name: '::User', inverse_of: :integration, foreign_key: :integration_id, dependent: :destroy
 
   # Many-to-many associations
 

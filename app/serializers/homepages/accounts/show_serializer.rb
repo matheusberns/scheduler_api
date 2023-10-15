@@ -3,7 +3,7 @@
 module Homepages::Accounts
   class ShowSerializer < BaseSerializer
     attributes :name,
-               :base_url,
+               :subdomain,
                :primary_color,
                :secondary_color,
                :campos_personalizados,

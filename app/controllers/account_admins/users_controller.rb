@@ -2,7 +2,6 @@ module AccountAdmins
   class UsersController < ::ApiController
     include CheckCurrentPassword
     include PasswordChangeManageTokens
-    before_action :validate_permission, except: %i[show autocomplete]
     before_action :validate_current_password, only: :update
     before_action :set_user, only: %i[show update images approve_nickname reprove_nickname
                                       update_salary_advance unlock_user remove_sessions create_facial_id validate_facial_id]
@@ -110,10 +109,6 @@ module AccountAdmins
     end
 
     private
-
-    def validate_permission
-      render_error_json(status: 405) unless find_permission([::PermissionCodeEnum::USER_MANAGE])
-    end
 
     def set_user
       @user = @account.users.activated.list.find(params[:id])

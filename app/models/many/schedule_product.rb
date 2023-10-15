@@ -6,6 +6,7 @@ module Many
 
     # Active storage
 
+
     # Enumerations
 
     # Belongs_to associations

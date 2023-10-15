@@ -19,7 +19,7 @@ module Admins
                  :active_directory_host,
                  :active_directory_base,
                  :active_directory_domain,
-                 :base_url,
+                 :subdomain,
                  :primary_color,
                  :secondary_color,
                  :primary_colors,

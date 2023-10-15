@@ -21,7 +21,6 @@ class User < ApplicationRecord
 
   # Belongs_to associations
   belongs_to :headquarter, -> { activated }, class_name: '::Headquarter', inverse_of: :users, foreign_key: :headquarter_id, optional: true
-  belongs_to :integration, -> { activated }, class_name: '::Integration', inverse_of: :users, foreign_key: :integration_id, optional: true
   belongs_to :account, -> { activated }, class_name: '::Account', inverse_of: :users, foreign_key: :account_id, optional: true
   belongs_to :state, -> { activated }, class_name: '::Region::State', inverse_of: :users, foreign_key: :state_id, optional: true
   belongs_to :city, -> { activated }, class_name: '::Region::City', inverse_of: :users, foreign_key: :city_id, optional: true

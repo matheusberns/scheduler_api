@@ -54,16 +54,27 @@ class Account < ApplicationRecord
 
   # Callbacks
   after_create :default_setup
+  before_save :encrypt_smtp_password
 
   # Validations
   validates :name, presence: true, length: { maximum: 255 }
   validates_uniqueness_of :uuid, conditions: -> { activated }
-  validates_presence_of :base_url
+  validates_presence_of :subdomain
+
+  def smtp_password
+    ::DecryptTextService.new(read_attribute(:smtp_password)).call
+  end
 
   private
 
   def default_setup
     ::AccountDefaultSetupJob.perform_now(self) unless Rails.env.test?
+  end
+
+  def encrypt_smtp_password
+    return unless smtp_password_changed?
+
+    write_attribute(:smtp_password, ::EncryptTextService.new(read_attribute(:smtp_password)).call)
   end
 
 end
