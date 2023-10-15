@@ -13,7 +13,7 @@ class ApplicationMailer < ActionMailer::Base
       port: 587,
       authentication: :login,
       enable_starttls_auto: true,
-      openssl_verify_mode: 'none'
+      ssl: true
     }
   end
 end
