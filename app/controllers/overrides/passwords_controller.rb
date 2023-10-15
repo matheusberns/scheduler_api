@@ -24,7 +24,7 @@ module Overrides
             provider: 'email',
             redirect_url: @redirect_url,
             authkey: AUTH_KEY,
-            client_config: @client_config
+            client_config: params[:config_name]
           )
 
           if @resource.errors.empty?
