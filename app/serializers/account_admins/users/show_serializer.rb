@@ -26,7 +26,6 @@ module AccountAdmins
                  :updated_at,
                  :is_admin,
                  :account_id,
-                 :integration_id,
                  :uuid,
                  :is_blocked,
                  :is_account_admin,
