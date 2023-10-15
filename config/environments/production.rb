@@ -86,7 +86,7 @@ Rails.application.configure do
   # SMTP Settings
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: 'smtp.kinghost.net',
+    address: 'smtpi.kinghost.net',
     port: 587,
     domain: 'bsystems.net.br',
     user_name: 'nao-responda@bsystems.net.br',
