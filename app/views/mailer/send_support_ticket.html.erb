@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div style="margin: 0; padding: 0">
+
+  <p><%= t('mailer.support_ticket.greeting') %></p>
+
+  <p><%= t('mailer.support_ticket.created_via') %> <%= @account.name %></p>
+
+  <p><%= t('mailer.support_ticket.created_by') %> <%= @user.name %> - <%= @user.email %></p>
+
+  <br>
+
+  <%= content_tag(:p, @description) %>
+
+  <%= content_tag(:p, @files.any? ? t('mailer.support_ticket.attachments_attached') : nil) %>
+
+  <% @files.each { |file| attachments[file[:filename]] = File.read(file[:filepath]) } %>
+
+</div>
+</body>
+</html>

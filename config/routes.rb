@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   draw(:integration)
   draw(:open)
 
+  root :to => 'home#index'
+
   # Regions
   resources :states, controller: 'regions/states', only: :index
   resources :cities, controller: 'regions/cities', only: :index
