@@ -1,6 +1,8 @@
   # frozen_string_literal: true
 
 ApiScheduler::Application.routes.draw do
+  root :to => 'home#index'
+
   scope module: :account_admins do
     match 'headquarters/autocomplete' => 'headquarters#autocomplete', via: :get
     resources :headquarters, only: %i[index show create update destroy]
